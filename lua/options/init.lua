@@ -2,20 +2,28 @@
 vim.cmd("filetype plugin indent on")
 vim.cmd([[autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = true}]])
 vim.cmd([[
-    augroup vimrc-remember-cursor-position
+    augroup remember-cursor-position
         autocmd!
         autocmd BufReadPost * if line ("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
      augroup END
     ]])
 vim.api.nvim_exec(
 	[[
-au CursorHoldI * stopinsert
-au InsertEnter * let updaterestore=&updatetime | set updatetime=15000
-au InsertLeave * let &updatetime=updaterestore
+  au CursorHoldI * stopinsert
+  au InsertEnter * let updaterestore=&updatetime | set updatetime=15000
+  au InsertLeave * let &updatetime=updaterestore
 ]],
 	false
 )
-vim.cmd([[autocmd BufRead,BufNewFile *.md setlocal spell]])
+vim.api.nvim_exec(
+	[[
+  augroup SetMarkdownFt
+    autocmd!
+    autocmd BufFilePre,BufRead,BufNewFile *.md,*.MD,*.mdwn,*.mkdn,*.mkd,*.mdown,*.markdown set ft=markdown
+  augroup END
+]],
+	false
+)
 vim.cmd([[autocmd Filetype qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>]])
 vim.cmd([[autocmd Filetype qf set nobuflisted]])
 
@@ -70,6 +78,7 @@ vim.o.smarttab = true
 vim.o.undofile = true
 vim.o.undodir = "/home/pi72/.config/nvim/undodir"
 vim.o.wildmenu = true
+vim.o.wildignore = "*/node_modules/*,*/.gitignore"
 -- vim.wo.wildcharm = '<Tab>'
 vim.o.wildmode = "longest:full:lastused"
 vim.o.nrformats = "bin,hex,alpha"

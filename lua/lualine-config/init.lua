@@ -2,6 +2,17 @@ local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	print("Problems with LUALINE-CONFIG")
 end
+
+local function diff_source()
+	local gitsigns = vim.b.gitsigns_status_dict
+	if gitsigns then
+		return {
+			added = gitsigns.added,
+			modified = gitsigns.changed,
+			removed = gitsigns.removed,
+		}
+	end
+end
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -11,6 +22,7 @@ lualine.setup({
 		disabled_filetypes = { "dashboard", "NvimTree" },
 		always_divide_middle = true,
 		filename = { file_status = true, path = 2, shorting_target = 30 },
+		diff = { source = diff_source },
 	},
 	sections = {
 		lualine_a = { "mode" },
@@ -29,5 +41,5 @@ lualine.setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	extensions = { "nvim-tree", "toggleterm", "fzf" },
+	extensions = { "nvim-tree", "quickfix", "toggleterm", "fzf" },
 })

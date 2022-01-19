@@ -11,7 +11,7 @@ autopairs.setup({
 	},
 	disable_filetype = { "TelescopePrompt", "spectre_panel" },
 	fast_wrap = {
-    map = "<M-e>",
+		map = "<M-e>",
 		chars = { "{", "[", "(", "<", "'", '"' },
 		highlight = "PmenuSel",
 		highlight_grey = "LineNr",

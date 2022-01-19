@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local opts = { prefix = "<leader>" }
 wk.setup({
 	plugins = {
 		marks = false,
@@ -8,7 +9,7 @@ wk.setup({
 			operators = false,
 			motions = false,
 			text_objects = false,
-			windows = false,
+			windows = true,
 			nav = false,
 			z = true,
 			g = true,
@@ -17,11 +18,11 @@ wk.setup({
 })
 local Terminal = require("toggleterm.terminal").Terminal
 local toggle_float = function()
-	local float = Terminal:new({ direction = "float" })
+	local float = Terminal:new({ direction = "float", hidden = true })
 	return float:toggle()
 end
 local toggle_lazygit = function()
-	local lazygit = Terminal:new({ cmd = "lazygit", direction = "float" })
+	local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
 	return lazygit:toggle()
 end
 local toggle_python = function()
@@ -37,7 +38,7 @@ local mappings = {
 	Q = { ":wq<cr>", "Save & Quit" },
 	w = { ":w<cr>", "Save" },
 	c = { ":CommentToggle<cr>", "Comment Lines" },
-	-- cl = { ":CommentToggle<cr>", "Comment Lines" },
+	s = { ":<Plug>Lightspeed_s<cr>", "Move Around File" },
 	x = { ":bdelete<cr>", "Close" },
 	E = { ":e ~/.config/nvim/init.lua<cr>", "Edit config" },
 	l = {
@@ -97,7 +98,7 @@ local mappings = {
 		b = { ":Telescope builtin<cr>", "Search Builtin Telescope " },
 		v = { ":Telescope vim_options<cr>", " Find Vim Options" },
 		s = { ":Telescope symbols<cr>", " Find Symbols" },
-		f = { ":Telescope frecency<cr>", " Find Frequent Files" },
+		f = { ":lua require'telescope'.extensions.frecency.frecency()<cr>", " Find Frequent Files" },
 		p = { ":TSPlaygroundToggle<cr>", " Playground" },
 		h = { ":TSHighlightCapturesUnderCursor<cr>", " Highlight Under Cursor" },
 	},
@@ -133,12 +134,12 @@ local mappings = {
 		s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
 		f = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
 		d = { "<cmd>Gitsigns previous_hunk<cr>", "Previous Hunk" },
-		u = { "<cmd>GitSigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
-		r = { "<cmd>GitSigns reset_hunk<cr>", "Reset Hunk" },
-		R = { "<cmd>GitSigns reset_buffer<cr>", "Reset Buffer" },
-		p = { "<cmd>GitSigns preview_hunk<cr>", "Preview Hunk" },
+		u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
+		r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
+		R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
+		p = { ":Gitsigns preview_hunk<cr>", "Preview Hunk" },
 		b = { "<cmd>lua require'gitsigns'.blame_line{full=true}<cr>", "Blame" },
-		S = { "<cmd>GitSigns stage_buffer<cr>", "Stage Buffer" },
+		S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
 		U = { "<cmd>Gitsigns reset_buffer_index<cr>", "Reset Buffer Index" },
 	},
 	z = {
@@ -147,5 +148,4 @@ local mappings = {
 		t = { ":Twilight<CR>", "Twilight" },
 	},
 }
-local opts = { prefix = "<leader>" }
 wk.register(mappings, opts)

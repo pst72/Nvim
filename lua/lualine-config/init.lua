@@ -30,7 +30,7 @@ lualine.setup({
 		lualine_c = { "filename" },
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = { "location" },
-		lualine_z = { "progress" },
+		lualine_z = { "%l/%L" },
 	},
 	inactive_sections = {
 		lualine_a = {},

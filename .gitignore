@@ -1,2 +1,8 @@
 lua-language-server/
 plugin/packer_compiled.lua
+undodir/
+tags
+lua/disable/
+lua/list/
+lua/tutorial_env/
+

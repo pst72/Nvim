@@ -69,6 +69,6 @@ map("n", "<leader>af", "<cmd>lua require'telescope'.extensions.frecency.frecency
 
 map("n", "<leader>nw", "<Plug>VimwikiIndex<CR>", nopts)
 
-map("i", "<C-k>", "<Plug>fzf-dictionary-open<CR>", nopts)
+map("i", "<C-k>", ":<Plug>fzf-dictionary-open<CR>", nopts)
 map("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opts)
 map("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opts)

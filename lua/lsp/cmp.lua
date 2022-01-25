@@ -27,12 +27,11 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-Down>"] = cmp.mapping.scroll_docs(4),
+		["<C-Up>"] = cmp.mapping.scroll_docs(-4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		-- ["<TAB>"] = cmp.mapping.select_next_item({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -44,7 +43,6 @@ cmp.setup({
 				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 			end
 		end, { "i", "s" }),
-
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -56,16 +54,16 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	sources = {
-		{ name = "luasnip" },
-		{ name = "nvim-lua" },
 		{ name = "nvim_lsp" },
-		{ name = "path" },
+		{ name = "luasnip" },
 		{ name = "buffer" },
+		{ name = "nvim-lua" },
+		{ name = "path" },
 		{ name = "cmdline" },
 	},
 	formatting = {
-		format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
-		fields = { "kind", "abbr", "menu" },
+		format = lspkind.cmp_format({ with_text = true, maxwidth = 60 }),
+		fields = { "menu", "abbr", "kind" },
 		menu = {
 			buffer = "[Buf]",
 			nvim_lsp = "[LSP]",

@@ -6,3 +6,7 @@ lua/disable/
 lua/list/
 lua/tutorial_env/
 
+
+node_modules
+undodir
+undodir

@@ -1,4 +1,4 @@
---vim.cmd('colorscheme nord')
+vim.cmd("colorscheme terafox")
 require("plugins")
 require("options")
 require("keybindings")

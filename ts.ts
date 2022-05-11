@@ -1,17 +1,17 @@
 class Person {
-    name: string
-    mom: Person
+  name: String
+  mom: Person
 
-    constructor(name: string, mom: Person) {
-      this.name = name;
-      this.mom = mom;
-    }
+  constructor(name: String, mom: Person) {
+    this.name = name;
+    this.mom = mom;
+  }
 
-    getName() : string {
-      return this.name;
+  getName(): String {
+    return this.name;
 
-    }
-    getMom() : Person {
-      return this.mom;
-    }
+  }
+  getMom(): Person {
+    return this.mom;
+  }
 };

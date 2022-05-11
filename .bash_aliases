@@ -1,0 +1,1 @@
+/home/pi72/.bash_aliases

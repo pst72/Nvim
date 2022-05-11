@@ -17,12 +17,12 @@ local sources = {
 	formatting.prettier, --> formatter js, ts, jsx, tsx, vue, css, scss, less, html and more ..
 	diagnostics.flake8,
 	diagnostics.eslint,
-	diagnostics.shellcheck,
+	-- diagnostics.shellcheck,
 	-- diagnostics.markdownlint, --> markdown style and syntax checker
 
---	code_actions.eslint,
---	code_actions.gitsigns,
---	code_actions.shellcheck,
+	--	code_actions.eslint,
+	--	code_actions.gitsigns,
+	--	code_actions.shellcheck,
 }
 
 null_ls.setup({

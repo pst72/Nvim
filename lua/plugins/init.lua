@@ -5,12 +5,17 @@ if not status_ok then
 	return
 end
 -- Autocommand that reloads Nvim when you save this file.
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]])
+local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
+vim.api.nvim_create_autocmd(
+	"BufWritePost",
+	{ command = "source <afile> | PackerCompile", group = packer_group, pattern = "init.lua" }
+)
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost init.lua source <afile> | PackerSync
+--   augroup end
+-- ]])
 -- Have Packer use a PopUp window
 packer.init({
 	display = {
@@ -24,8 +29,9 @@ return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 	use({ "nvim-lua/plenary.nvim" })
-	use({ "EdenEast/nightfox.nvim",  })
+	use({ "EdenEast/nightfox.nvim" })
 	use({ "junegunn/fzf.vim" })
+	use({ "tpope/vim-surround" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = "require('treesitter-config')" })
 	use({ "nvim-treesitter/playground" })
 	use({ "nvim-treesitter/nvim-treesitter-refactor" })
@@ -59,7 +65,7 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-cmdline" })
 	use({ "L3MON4D3/LuaSnip" })
 	use({ "saadparwaiz1/cmp_luasnip" })
-  use ({ "rafamadriz/friendly-snippets"})
+	use({ "rafamadriz/friendly-snippets" })
 	use({ "yuki-uthman/vim-fzf-dictionary" })
 	use({ "onsails/lspkind-nvim" })
 	use({ "yamatsum/nvim-cursorline" })

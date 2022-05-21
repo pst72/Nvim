@@ -8,6 +8,11 @@ inoremap <Tab> <C-R>=pumvisible() ? "\<lt>C-N>" : "\<<lt>Tab>"<CR>
 
 nmap sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'path_html': '~/Documents/vimwiki/html/', 'auto_toc': 1}]
 
 function! CleverTab()
         if strpart ( getline('.'), 0, col('.')-1 ) =~ '^\s*$'

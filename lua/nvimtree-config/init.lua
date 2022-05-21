@@ -17,6 +17,11 @@ nvim_tree.setup({
 	open_on_tab = false,
 	hijack_cursor = true,
 	update_cwd = true,
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
+	},
 	diagnostics = {
 		enable = true,
 		icons = {

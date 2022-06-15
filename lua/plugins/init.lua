@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd(
 	"BufWritePost",
 	{ command = "source <afile> | PackerCompile", group = packer_group, pattern = "init.lua" }
 )
+local impatient = require("impatient")
 -- vim.cmd([[
 --   augroup packer_user_config
 --     autocmd!
@@ -28,6 +29,7 @@ packer.init({
 return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
+	use({ "lewis6991/impatient.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "EdenEast/nightfox.nvim" })
 	use({ "junegunn/fzf.vim" })

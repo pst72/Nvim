@@ -2,11 +2,6 @@ local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
 	print("Problems with NVIMTREE-CONFIG")
 end
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-vim.g.nvim_tree_add_trailing = 1 -- 0 by default, append a trailing slash to folder names
--- vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_highlight_opened_files = 3
-vim.g.nvim_tree_git_hl = 1
 
 nvim_tree.setup({
 	disable_netrw = true,
@@ -17,6 +12,7 @@ nvim_tree.setup({
 	open_on_tab = false,
 	hijack_cursor = true,
 	update_cwd = true,
+	respect_buf_cwd = true,
 	actions = {
 		open_file = {
 			quit_on_open = true,
@@ -40,5 +36,20 @@ nvim_tree.setup({
 		cmd = nil,
 		-- the command arguments as a list
 		args = {},
+	},
+	renderer = {
+		add_trailing = true,
+		group_empty = false,
+		highlight_git = true,
+		highlight_opened_files = "all",
+		root_folder_modifier = ":~",
+		indent_markers = {
+			enable = true,
+			icons = {
+				corner = "└ ",
+				edge = "│ ",
+				none = "  ",
+			},
+		},
 	},
 })

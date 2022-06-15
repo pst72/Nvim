@@ -88,21 +88,21 @@ M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
 		client.resolved_capabilities.document_formatting = false
 	end
-	if client.name == "pyright" then
-		client.resolved_capabilities.document_formatting = false
-	end
-	if client.name == "sumneko_lua" then
-		client.resolved_capabilities.document_formatting = false
-	end
-	if client.name == "vimls" then
-		client.resolved_capabilities.document_formatting = false
-	end
-	if client.name == "bashls" then
-		client.resolved_capabilities.document_formatting = false
-	end
-	if client.name == "prettier" then
-		client.resolved_capabilities.document_formatting = false
-	end
+	-- if client.name == "pyright" then
+	-- 	client.resolved_capabilities.document_formatting = false
+	-- end
+	-- if client.name == "sumneko_lua" then
+	-- 	client.resolved_capabilities.document_formatting = true
+	-- end
+	-- if client.name == "vimls" then
+	-- 	client.resolved_capabilities.document_formatting = false
+	-- end
+	-- if client.name == "bashls" then
+	-- 	client.resolved_capabilities.document_formatting = false
+	-- end
+	-- if client.name == "prettier" then
+	-- 	client.resolved_capabilities.document_formatting = false
+	-- end
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()

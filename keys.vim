@@ -1,10 +1,10 @@
 " Keys Maps and Functions
 
-" inoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"
-" snoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"
-" snoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"
-" inoremap <expr> <Tab> <C-R> pumvisible() ? "\<lt>C-N>" : "\<<lt>Tab>"<CR>
+inoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"
+snoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"
+snoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"
+inoremap <expr> <Tab> <C-R> pumvisible() ? "\<lt>C-N>" : "\<<lt>Tab>"<CR>
 
 nmap sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 

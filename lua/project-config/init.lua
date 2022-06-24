@@ -16,8 +16,6 @@ project.setup({
 	},
 })
 
-vim.g.nvim_tree_respect_buf_cwd = 1
-
 local tele_status_ok, telescope = pcall(require, "telescope")
 if not tele_status_ok then
 	return

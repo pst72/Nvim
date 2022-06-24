@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local nopts = { silent = true }
 local term_opts = { silent = true }
@@ -15,7 +15,6 @@ map("n", "<S-Tab>", ":bprevious<CR>", opts)
 
 map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 map("v", "<leader>c", ":CommentToggle<CR>", opts)
-map("n", "s", "<Plug>Lightspeed_s", nopts)
 -- Indentation
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)

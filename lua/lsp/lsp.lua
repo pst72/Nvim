@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
 
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+	-- buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	local opts = { noremap = true, silent = true }
 
@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", ":lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<leader>lq", ":lua vim.diagnostic.setloclist()<CR>", opts)
-	buf_set_keymap("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>", opts) --> formats the current buffer
+	buf_set_keymap("n", "<leader>lF", ":lua vim.lsp.buf.formatting()<CR>", opts) --> formats the current buffer
 end
 
 local server = {
@@ -74,6 +74,7 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(default_opts)
 end)
 
+require("lspconfig").sumneko_lua.setup({ opts })
 require("lspconfig").bashls.setup({ opts })
 require("lspconfig").eslint.setup({ opts })
 require("lspconfig").tsserver.setup({ opts })

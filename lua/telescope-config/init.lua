@@ -49,29 +49,26 @@ telescope.setup({
 			},
 		},
 	},
-  load_extension = { "fzf", "projects", "symbols", "cheat", "frecency", "packer" },
+	load_extension = { "fzf", "dap", "luasnip", "projects", "symbols", "cheat", "frecency", "packer", "media_files" },
 	extensions = {
 		"fzf",
+		"dap",
 		"packer",
 		"symbols",
+		"luasnip",
+		"media_files",
 		"project",
 		"frecency",
 		"cheat",
 	},
 })
 
---require("telescope").load_extension("fzf")
---require("telescope").load_extension("projects")
---require("telescope").load_extension("symbols")
---require("telescope").load_extension("packer")
---require("telescope").load_extension("frecency")
---require("telescope").load_extension("cheat")
+-- require("telescope").extensions.luasnip.luasnip({})
 
--- require("telescope").extensions.project.project({})
-
--- vim.api.nvim_set_keymap(
+-- vim.keymap.set(
 -- 	"n",
 -- 	"<leader>fp",
 -- 	"lua require'telescope'.extensions.project.project{}<CR>",
 -- 	{ noremap = true, silent = true }
 -- )
+--

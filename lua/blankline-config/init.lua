@@ -8,6 +8,7 @@ indent_blankline.setup({
 	filetype_exclude = { "help", "NvimTree", "packer", "man", "lspinfo" },
 	show_current_context = true,
 	use_treesitter = true,
+	use_treesitter_scope = true,
 
 	context_patterns = {
 		"class",

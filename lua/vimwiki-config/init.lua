@@ -4,7 +4,7 @@
 --vim.cmd{[[let g:vimwiki_list = [{'path': '~Documents/vimwiki/'}]]}
 --
 --local vim.g:map_prefix = "leader>n"
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 map("n", "<leader>nw", "<Plug>VimwikiIndex<CR>", { noremap = true, silent = true })
 map("n", "<leader>nt", "<Plug>VimwikiTabIndex<CR>", { noremap = true, silent = true })
 map("n", "<leader>ns", "<Plug>VimwikiUISelect<CR>", { noremap = true, silent = true })

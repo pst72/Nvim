@@ -5,8 +5,8 @@ tags
 lua/disable/
 lua/list/
 lua/tutorial_env/
+spell/
 
 
 node_modules
-undodir
 undodir

@@ -14,7 +14,7 @@ toggleterm.setup({
 	direction = "float",
 	float_opts = { border = "curved" },
 })
--- local map = vim.api.nvim_set_keymap
+-- local map = vim.keymap.set
 -- local opts = { noremap = true, silent = true }
 -- map({ "n", "<leader>tt", "<cmd>lua _float_toggle()<cr>", opts })
 -- map({ "n", "<leader>tg", "<cmd>lua _lazygit_toggle()<cr>", opts })

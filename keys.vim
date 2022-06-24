@@ -11,18 +11,19 @@ nmap sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'path_html': '~/Documents/vimwiki/html/', 'auto_toc': 1}]
 
-" function! CleverTab()
-"         if strpart ( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-"           return "\<Tab>"
-"         else
-"           return "\<C-n>"
-"         endif
-"     endfunction
-" inoremap <Tab> <C-R>=CleverTab()<CR>
-
+function! CleverTab()
+        if strpart ( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+          return "\<Tab>"
+        else
+          return "\<C-n>"
+        endif
+    endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
 
 " function to simplify standard writing
 function! Writer()

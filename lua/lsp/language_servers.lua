@@ -4,24 +4,19 @@ if not status_ok then
 end
 
 local lsp_defaults = {
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
-  capabilities.textDocument.completion.completionItem.snippetSupport = true,
-  on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  end
-},
-local lspconfig = require('lspconfig')
+	flags = {
+		debounce_text_changes = 150,
+	},
+	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	capabilities.textDocument.completion.completionItem.snippetSupport == true,
+	on_attach = function(client, bufnr)
+		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+		client.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	end,
+}
+local lspconfig = require("lspconfig")
 
-lspconfig.util.default_config = vim.tbl_deep_extend(
-  'force',
-  lspconfig.util.default_config,
-  lsp_defaults
-)
+lspconfig.util.default_config = vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults)
 local server = { "sumneko_lua", "pyright", "vimls", "bash-ls", "eslint", "prettier" }
 -- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true

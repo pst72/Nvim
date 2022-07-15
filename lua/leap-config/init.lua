@@ -17,7 +17,7 @@ require("leap").setup({
 })
 -- require("leap").set_default_keymaps()
 -- Searching in all windows (including the current one) on the tab page:
-function leap_all_windows()
+local function leap_all_windows()
 	require("leap").leap({
 		["target-windows"] = vim.tbl_filter(function(win)
 			return vim.api.nvim_win_get_config(win).focusable

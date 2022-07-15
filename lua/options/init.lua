@@ -60,7 +60,7 @@ vim.o.sidescrolloff = 3
 vim.o.mouse = "a"
 vim.o.wrap = true
 vim.o.cursorline = true
-vim.o.statusline = "%F"
+vim.o.statusline = " %<%F%r%m%=%=%=%=%=[buf %n]  %y%=          %=%=%=%w    %3l/%L%=%P "
 vim.wo.signcolumn = "yes"
 vim.o.colorcolumn = "80"
 vim.o.tabstop = 2

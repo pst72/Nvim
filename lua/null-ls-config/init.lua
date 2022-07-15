@@ -4,31 +4,32 @@ if not status_ok then
 end
 local formatting = require("null-ls").builtins.formatting
 local diagnostics = require("null-ls").builtins.diagnostics
---local code_actions = code_actions
+local code_actions = require("null-ls").builtins.code_actions
 
 local sources = {
 	--> formatters <--
 	-- formatting.lua-format, --> Lua formatter
 	formatting.stylua, --> lua formatter
-	-- formatting.eslint, --> ts/js formatter
+	formatting.eslint, --> ts/js formatter
 	formatting.autopep8, --> python formatter
 	formatting.black, --> python formatter
 	formatting.shfmt, --> shell formatter
+	formatting.jq, --> json formatter
 	formatting.prettier, --> formatter js, ts, jsx, tsx, vue, css, scss, less, html and more ..
 	diagnostics.flake8,
 	diagnostics.eslint,
-	-- diagnostics.shellcheck,
+	diagnostics.shellcheck,
 	-- diagnostics.markdownlint, --> markdown style and syntax checker
 
-	--	code_actions.eslint,
-	--	code_actions.gitsigns,
-	--	code_actions.shellcheck,
+	code_actions.eslint,
+	code_actions.gitsigns,
+	code_actions.shellcheck,
 }
 
 null_ls.setup({
 	sources = sources,
 	on_attach = function(client)
-		if client.resolved_capabilities.document_formatting then
+		if client.server_capabilities.document_formatting then
 			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 		end
 		-- vim.cmd([[

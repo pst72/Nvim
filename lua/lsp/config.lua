@@ -6,9 +6,18 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>lq", vim.diagnostic.setloclist, opts)
 
+local util = require("vim.lsp.util")
+
+local formatting_callback = function(client, bufnr)
+	vim.keymap.set("n", "<leader>w", function()
+		local params = util.make_formatting_params({})
+		client.request("textDocument/formatting", params, nil, bufnr)
+	end, { buffer = bufnr })
+end
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+	client.server_capabilities.document_formatting = false
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -38,14 +47,20 @@ local lsp_flags = {
 }
 require("lspconfig")["pyright"].setup({
 	on_attach = on_attach,
+	formatting_callback = formatting_callback,
 	flags = lsp_flags,
 })
 require("lspconfig")["tsserver"].setup({
 	on_attach = on_attach,
+	formatting_callback = formatting_callback,
+	format = {
+		enable = false,
+	},
 	flags = lsp_flags,
 })
 require("lspconfig")["rust_analyzer"].setup({
 	on_attach = on_attach,
+	formatting_callback = formatting_callback,
 	flags = lsp_flags,
 	-- Server-specific settings...
 	settings = {
@@ -72,11 +87,13 @@ require("lspconfig").sumneko_lua.setup({
 				enable = false,
 			},
 		},
+
+		formatting_callback = formatting_callback,
 	},
 })
 
-require("lspconfig").bashls.setup({ on_attach = on_attach })
-require("lspconfig").eslint.setup({ on_attach = on_attach })
--- require("lspconfig").tsserver.setup({ on_attach = on_attach })
--- require("lspconfig").pyright.setup({ on_attach = on_attach })
-require("lspconfig").vimls.setup({ on_attach = on_attach })
+require("lspconfig").bashls.setup({ on_attach = on_attach, formatting_callback = formatting_callback })
+require("lspconfig").eslint.setup({ on_attach = on_attach, formatting_callback = formatting_callback })
+-- require("lspconfig").tsserver.setup({ on_attach = on_attach, formatting_callback = formatting_callback,})
+-- require("lspconfig").pyright.setup({ on_attach = on_attach, formatting_callback = formatting_callback,})
+require("lspconfig").vimls.setup({ on_attach = on_attach, formatting_callback = formatting_callback })

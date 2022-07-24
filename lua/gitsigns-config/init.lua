@@ -15,7 +15,7 @@ gitsigns.setup({
 			linehl = "GitSignsChangeLn",
 		},
 	},
-	signcolumn = true,
+  signcolumn = true,
 	numhl = true,
 	linehl = false,
 	preview_config = { border = "rounded" },
@@ -27,7 +27,7 @@ gitsigns.setup({
 	current_line_blame = false,
 })
 
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 map("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", opts)
 map("v", "<leader>gs", ":Gitsigns stage_hunk<CR>", opts)

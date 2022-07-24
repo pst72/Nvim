@@ -1,8 +1,6 @@
 require("jaq-nvim").setup({
   -- Commands used with 'Jaq'
   cmds = {
-    -- Default UI used (see `Usage` for options)
-    default = "float",
 
     -- Uses external commands such as 'g++' and 'cargo'
     external = {
@@ -22,15 +20,18 @@ require("jaq-nvim").setup({
       vim = "source %",
     },
   },
-
-  -- UI settings
-  ui = {
+  behavior = {
     -- Start in insert mode
     startinsert = false,
-
+    -- Default UI used (see `Usage` for options)
+    default = "float",
     -- Switch back to current file
     -- after using Jaq
     wincmd = false,
+  },
+
+  -- UI settings
+  ui = {
 
     -- Floating Window / FTerm settings
     float = {

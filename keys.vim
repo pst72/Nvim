@@ -6,7 +6,7 @@ snoremap <expr> <Tab> pumvisible() ? "\\<C-n>" : "\\<Tab>"
 snoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"
 inoremap <expr> <Tab> <C-R> pumvisible() ? "\<lt>C-N>" : "\<<lt>Tab>"<CR>
 
-nmap sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nmap sw :%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>
 
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
@@ -14,7 +14,7 @@ let g:copilot_no_tab_map = v:true
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'path_html': '~/Documents/vimwiki/html/', 'auto_toc': 1}]
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md', 'path_html': '~/Documents/vimwiki/html/', 'auto_toc': 1}]
 
 function! CleverTab()
         if strpart ( getline('.'), 0, col('.')-1 ) =~ '^\s*$'

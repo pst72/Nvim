@@ -15,7 +15,7 @@ alias cdm='cd ~/Music/ && l.'
 alias cdd='cd ~/Documents/ && l.'
 alias cdv='cd ~/Videos/ && l.'
 alias cdn='cd ~/.config/nvim/ && l.'
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wget=wget --hsts-file="$\XDG_DATA_HOME/wget-hsts"
 
 alias update='sudo pacman -Syyu'
 alias search='pacman -Ss'
@@ -26,7 +26,7 @@ alias l='exa -F --git --group-directories-first --icons --no-time'
 alias lt='exa -TF --level=2 --icons --no-time'
 alias l.='exa -laF --group-directories-first --grid --git --icons --no-time'
 alias ll='exa -lF --group-directories-first --grid --git --icons --no-time'
-alias fm="man -k . | fzf --preview 'bat -f {}' --prompt='Man> ' | awk '{print $1}' | xargs -r man"
+# alias fm="man -k . | fzf --preview 'bat -f {}' --prompt='Man> ' | awk '{print $1}' | xargs -r man"
 alias cw='curl wttr.in'
 alias fzf='fzf --preview "bat -f {}"'
 

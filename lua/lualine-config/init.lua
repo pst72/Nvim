@@ -1,6 +1,7 @@
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	print("Problems with LUALINE-CONFIG")
+  return
 end
 
 local function diff_source()
@@ -16,11 +17,12 @@ end
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = "nightfox",
+		theme = "auto",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "dashboard", "NvimTree" },
 		always_divide_middle = true,
+    globalstatus = true,
 		filename = { file_status = true, path = 2, shorting_target = 30 },
 		diff = { source = diff_source },
 	},
@@ -41,5 +43,5 @@ lualine.setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	extensions = { "nvim-tree", "quickfix", "toggleterm", "fzf" },
+	extensions = { "nvim-tree", "quickfix", "toggleterm", "fzf", "man" },
 })

@@ -14,9 +14,24 @@ toggleterm.setup({
 	direction = "float",
 	float_opts = { border = "curved" },
 })
+
+-- local Terminal = require("toggleterm.terminal").Terminal
+-- local toggle_float = function()
+-- 	local float = Terminal:new({ direction = "float", hidden = true })
+-- 	return float:toggle()
+-- end
+-- local toggle_lazygit = function()
+-- 	local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+-- 	return lazygit:toggle()
+-- end
+-- local toggle_python = function()
+-- 	local python = Terminal:new({ cmd = "python", direction = "float" })
+-- 	return python:toggle()
+-- end
+-- local toggle_lua = function()
+-- 	local lua = Terminal:new({ cmd = "lua", direction = "float" })
+-- 	return lua:toggle()
+-- end
 -- local map = vim.keymap.set
 -- local opts = { noremap = true, silent = true }
--- map({ "n", "<leader>tt", "<cmd>lua _float_toggle()<cr>", opts })
--- map({ "n", "<leader>tg", "<cmd>lua _lazygit_toggle()<cr>", opts })
--- map({ "n", "<leader>tl", "<cmd>lua _lua_toggle()<cr>", opts })
--- map({ "n", "<leader>tp", "<cmd>lua _python_toggle()<cr>", opts })
+-- map( "n", "<leader>tt", ":ToggleTerm<cr>", opts )

@@ -27,7 +27,7 @@ cmp.setup({
 			-- vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
-	mapping = {
+	mapping = cmp.mapping.preset.insert({
 		["<C-Down>"] = cmp.mapping.scroll_docs(4),
 		["<C-Up>"] = cmp.mapping.scroll_docs(-4),
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -53,22 +53,22 @@ cmp.setup({
 				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 			end
 		end, { "i", "s" }),
-	},
+	}),
 	sources = {
-		{ name = "path" },
 		{ name = "nvim_lsp" },
-		{ name = "buffer" },
 		{ name = "luasnip" },
+		{ name = "buffer" },
+		{ name = "path" },
 		{ name = "nvim-lua" },
 		{ name = "cmdline" },
 	},
 	formatting = {
-		format = lspkind.cmp_format({ with_text = true, maxwidth = 60 }),
+		format = lspkind.cmp_format({ symbol_text = true, maxwidth = 60 }),
 		fields = { "menu", "abbr", "kind" },
 		menu = {
-			buffer = "[Buf]",
 			nvim_lsp = "[LSP]",
 			luasnip = "[Snip]",
+			buffer = "[Buf]",
 			nvim_lua = "[Lua]",
 			path = "[Path]",
 			cmdline = "[CmdL]",

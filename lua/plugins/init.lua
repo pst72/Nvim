@@ -10,13 +10,8 @@ vim.api.nvim_create_autocmd(
 	"BufWritePost",
 	{ command = "source <afile> | PackerCompile", group = packer_group, pattern = "init.lua" }
 )
-local impatient = require("impatient")
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost init.lua source <afile> | PackerSync
---   augroup end
--- ]])
+require("impatient")
+
 -- Have Packer use a PopUp window
 packer.init({
 	display = {
@@ -77,7 +72,7 @@ return packer.startup(function(use)
 	use({ "yamatsum/nvim-cursorline" })
 	use({ "mfussenegger/nvim-dap", config = "require('dap-config')" })
 	use({ "mfussenegger/nvim-dap-python" })
-	--lsp_signatureuse({ "ray-x/lsp_signature.nvim", config = "require('lsp_signature-config')" })
+	use({ "ray-x/lsp_signature.nvim", config = "require('lsp-signature-config')" })
 	use({ "ggandor/leap.nvim", config = "require('leap-config')" })
 	use({ "ur4ltz/surround.nvim", config = "require('surround-config')" })
 	use({ "vimwiki/vimwiki", config = "require('vimwiki-config')" })
@@ -91,7 +86,7 @@ return packer.startup(function(use)
 	use({ "jose-elias-alvarez/null-ls.nvim", config = "require('null-ls-config')" })
 	use({ "williamboman/nvim-lsp-installer" })
 	use({ "is0n/jaq-nvim", config = "require('jaq-config')" })
-  use({ "ellisonleao/glow.nvim", branch = 'main' })
-	use({ "metakirby5/codi.vim" })
+  use({ "ellisonleao/glow.nvim", config = "require('glow-config')" })
+	-- use({ "metakirby5/codi.vim" })
 	use({ "dbeniamine/cheat.sh-vim" })
 end)

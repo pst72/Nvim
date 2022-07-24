@@ -38,8 +38,35 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<space>lR", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<space>la", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-	vim.keymap.set("n", "<space>F", vim.lsp.buf.formatting, bufopts)
+	vim.keymap.set("n", "<space>lF", vim.lsp.buf.formatting, bufopts)
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end
+  })
 end
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "detail",
+        "documentation",
+        "additionalTextEdits",
+    },
+}
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
@@ -97,3 +124,11 @@ require("lspconfig").eslint.setup({ on_attach = on_attach, formatting_callback =
 -- require("lspconfig").tsserver.setup({ on_attach = on_attach, formatting_callback = formatting_callback,})
 -- require("lspconfig").pyright.setup({ on_attach = on_attach, formatting_callback = formatting_callback,})
 require("lspconfig").vimls.setup({ on_attach = on_attach, formatting_callback = formatting_callback })
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+

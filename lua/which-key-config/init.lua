@@ -8,7 +8,7 @@ wk.setup({
 		presets = {
 			operators = false,
 			motions = false,
-			text_objects = false,
+			text_objects = true,
 			windows = true,
 			nav = false,
 			z = true,
@@ -16,35 +16,19 @@ wk.setup({
 		},
 	},
 })
-local Terminal = require("toggleterm.terminal").Terminal
-local toggle_float = function()
-	local float = Terminal:new({ direction = "float", hidden = true })
-	return float:toggle()
-end
-local toggle_lazygit = function()
-	local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
-	return lazygit:toggle()
-end
-local toggle_python = function()
-	local python = Terminal:new({ cmd = "python", direction = "float" })
-	return python:toggle()
-end
-local toggle_lua = function()
-	local lua = Terminal:new({ cmd = "lua", direction = "float" })
-	return lua:toggle()
-end
 local mappings = {
 	q = { ":q<cr>", "Quit" },
 	Q = { ":wq<cr>", "Save & Quit" },
+  F = { "<cmd>lua vim.lsp.buf.formattting()<cr>", "Format File" },
 	w = { ":w<cr>", "Save" },
 	c = { ":CommentToggle<cr>", "Comment Lines" },
 	-- s = { ":<Plug>Lightspeed_s<cr>", "Move Around File" },
 	x = { ":bdelete<cr>", "Close" },
-	E = { ":e ~/.config/nvim/init.lua<cr>", "Edit config" },
 	l = {
 		name = "LSP",
 		i = { ":LspInfo<cr>", "Connected Language Servers" },
 		s = { "<cmd>Lspsaga signature_help<cr>", "Signature Help" },
+		S = { ":Telescope lsp_document_symbols<cr>", "Symbols Help" },
 		f = { "<cmd>Lspsaga lsp_finder<cr>", "Finder Help" },
 		k = { "<cmd>Lspsaga hover_doc<cr>", "Hover Commands" },
 		p = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
@@ -55,6 +39,7 @@ local mappings = {
 		d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go To Definition" },
 		D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Go To Declaration" },
 		r = { "<cmd>lua vim.lsp.buf.references()<cr>", "References" },
+		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix List" },
 		R = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
 		e = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show Line Diagnostics" },
@@ -84,14 +69,6 @@ local mappings = {
 		G = { ":Telescope grep_string<cr>", " Grep Directory" },
 		p = { ":Telescope projects<cr>", " Find Projects" },
 	},
-	t = {
-		name = "TERMINAL",
-		s = { ":ToggleTerm<cr>", "Split Below" },
-		t = { toggle_float, "Floating Terminal" },
-		g = { toggle_lazygit, "LazyGit" },
-		p = { toggle_python, "Python" },
-		l = { toggle_lua, "Lua" },
-	},
 	a = {
 		name = "CHANGE",
 		c = { ":Telescope colorscheme<cr>", " Find Colorscheme" },
@@ -99,7 +76,7 @@ local mappings = {
 		b = { ":Telescope builtin<cr>", "Search Builtin Telescope " },
 		v = { ":Telescope vim_options<cr>", " Find Vim Options" },
 		s = { ":Telescope symbols<cr>", " Find Symbols" },
-		g = { ":Glow<cr>", " Glow Markdown Preview" },
+		g = { ":Glow %<cr>", " Glow Markdown Preview" },
 		l = { ":LuaSnipListAvailable<cr>", " Find Snippets" },
 		m = { ":lua require'telescope'.extensions.media_files.media_files()<cr>", " Find Media Files" },
 		t = { ":Telescope treesitter<cr>", " Find Treesitter Functions" },
@@ -125,6 +102,8 @@ local mappings = {
 		name = "Jaq",
 		j = { ":Jaq<cr>", "Run Code in Float" },
 		b = { ":Jaq bang<cr>", "Run Code in StatusLine" },
+		i = { ":Jaq internal<cr>", "Run Code in Internal" },
+		t = { ":Jaq terminal<cr>", "Run Code in Terminal" },
 		q = { ":Jaq quickfix<cr>", "Run Code in QF" },
 	},
 	p = {
@@ -157,8 +136,8 @@ local mappings = {
 	g = {
 		name = "GIT",
 		s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
-		f = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
-		d = { "<cmd>Gitsigns previous_hunk<cr>", "Previous Hunk" },
+		n = { "<cmd>Gitsigns next_hunk<cr>", "Next Hunk" },
+		N = { "<cmd>Gitsigns previous_hunk<cr>", "Previous Hunk" },
 		u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Stage Hunk" },
 		r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
 		R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
